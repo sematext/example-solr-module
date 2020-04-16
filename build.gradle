@@ -1,0 +1,21 @@
+apply plugin: 'java'
+
+version = 1.0
+archivesBaseName = 'solr-example-module'
+description = 'Example Solr Module'
+
+repositories {
+    jcenter()
+}
+
+jar {
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+dependencies {
+    compileOnly 'org.apache.solr:solr-core:8.5.0'
+
+    testCompile 'org.apache.solr:solr-core:8.5.0'
+}
